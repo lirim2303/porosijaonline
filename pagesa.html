@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagesa</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Pagesa</h1>
+    </header>
+
+    <main>
+        <div id="metoda-e-pageses">
+            <h2>Zgjidhni mënyrën e pagesës</h2>
+            <button id="paguaj-online">Paguaj Online me Kartelë Banke</button>
+            <button id="pagesa-me-dore">Pagesë me Dorë</button>
+        </div>
+
+        <div id="lista-produkteve">
+            <!-- Lista e produkteve do të shfaqet këtu -->
+        </div>
+
+        <div id="formi-i-klientit" style="display: none;">
+            <h2>Informacionet e Klientit</h2>
+            <form id="klienti-form">
+                <label for="emri">Emri:</label>
+                <input type="text" id="emri" required>
+                
+                <label for="mbiemri">Mbiemri:</label>
+                <input type="text" id="mbiemri" required>
+                
+                <label for="adresa">Adresa:</label>
+                <input type="text" id="adresa" required>
+                
+                <label for="telefoni">Numri i Telefonit:</label>
+                <input type="tel" id="telefoni" required>
+                
+                <div id="formi-i-karteles" style="display: none;">
+                    <h2>Informacionet e Kartelës</h2>
+                    <label for="numri-i-karteles">Numri i Kartelës:</label>
+                    <input type="text" id="numri-i-karteles" required>
+                    
+                    <label for="data-e-shtypjes">Data e Shtypjes (MM/YY):</label>
+                    <input type="text" id="data-e-shtypjes" required>
+                    
+                    <label for="cvv">CVV:</label>
+                    <input type="text" id="cvv" required>
+                </div>
+
+                <div id="opsioni-i-doganes" style="display: none;">
+                    <h2>Opsioni i Dërgimit</h2>
+                    <label for="opti">Zgjidhni opsionin:</label>
+                    <select id="opti" required>
+                        <option value="marre-ne-dyqan">Marr në Dyqan</option>
+                        <option value="dergo-me-taksi">Dërgo me Taksi</option>
+                    </select>
+                </div>
+
+                <label for="data-porosise">Data e Porosisë:</label>
+                <input type="date" id="data-porosise" required>
+                
+                <label for="koha-porosise">Koha e Porosisë:</label>
+                <input type="time" id="koha-porosise" required>
+
+                <label for="mesazhi">Mesazhi për Porosinë:</label>
+                <textarea id="mesazhi" rows="4" placeholder="Shkruani një mesazh (opsional)"></textarea>
+
+                <button type="submit">Dërgo Porosinë</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Kifle & Produkte Ushqimore</p>
+    </footer>
+
+    <script>
+        // Funksionaliteti për butonin "Pagesë me Dorë"
+        document.getElementById('pagesa-me-dore').addEventListener('click', () => {
+            document.getElementById('formi-i-klientit').style.display = 'block'; // Tregon formularin e klientit
+            document.getElementById('metoda-e-pageses').style.display = 'none'; // Fshih metodën e pagesës
+            document.getElementById('formi-i-karteles').style.display = 'none'; // Fshih formularin e kartelës
+            document.getElementById('opsioni-i-doganes').style.display = 'block'; // Tregon opsionin e dërgimit
+        });
+
+        // Funksionaliteti për butonin "Paguaj Online me Kartelë Banke"
+        document.getElementById('paguaj-online').addEventListener('click', () => {
+            document.getElementById('formi-i-klientit').style.display = 'block'; // Tregon formularin e klientit
+            document.getElementById('metoda-e-pageses').style.display = 'none'; // Fshih metodën e pagesës
+            document.getElementById('formi-i-karteles').style.display = 'block'; // Tregon formularin e kartelës
+            document.getElementById('opsioni-i-doganes').style.display = 'none'; // Fshih opsionin e dërgimit
+        });
+
+        // Funksionaliteti për dërgimin e formularit të klientit
+        document.getElementById('klienti-form').addEventListener('submit', (event) => {
+            event.preventDefault(); // Ndalo dërgimin e formularit
+
+            const emri = document.getElementById('emri').value;
+            const mbiemri = document.getElementById('mbiemri').value;
+            const adresa = document.getElementById('adresa').value;
+            const telefoni = document.getElementById('telefoni').value;
+            const opsioni = document.getElementById('opti').value; // Merr opsionin e dërgimit
+            const dataPorosise = document.getElementById('data-porosise').value;
+            const kohaPorosise = document.getElementById('koha-porosise').value;
+            const mesazhi = document.getElementById('mesazhi').value;
+
+            // Mund të shtoni kodin për të ruajtur informacionet e klientit ose për t'i dërguar ato diku
+
+            alert(`Porosia e ${emri} ${mbiemri} me numrin e telefonit ${telefoni} u dërgua me sukses! \nOpsioni i dërgimit: ${opsioni} \nData: ${dataPorosise} \nKoha: ${kohaPorosise} \nMesazhi: ${mesazhi}`); // Njoftimi për dërgimin e suksesshëm
+        });
+    </script>
+</body>
+</html>

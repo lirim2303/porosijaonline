@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Kifle & Produkte Ushqimore</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="produktet.html">Produkte</a></li>
+                <li><a href="kontaktet.html">Kontakt</a></li>
+                <li class="cart-icon">
+                    <a href="#" id="shporta">
+                        <img src="shporta.png" alt="Shporta" class="shporta-logo">
+                        <span id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="content">
+        <!-- Home Section -->
+        <div id="home-section">
+            <h1>Mirësevini në dyqanin tonë online!</h1>
+            <p>Shikoni produktet tona dhe porositni lehtësisht nga shtëpia juaj.</p>
+        </div>
+
+        <!-- Product Section -->
+        <div id="products-section" style="display: none;">
+            <h1>Produktet Tona</h1>
+            <div class="artikuj">
+                <div class="artikull">
+                    <a href="artikulli1.html">
+                        <h3>Kifle</h3>
+                    </a>
+                    <p>Çmimi: <span class="cmimi">500</span> <strong>den</strong></p>
+                    <input type="number" min="1" value="1" class="sasi" />
+                    <button class="shto-ne-karroce" data-emri="Kifle" data-cmimi="500">Porosit</button>
+                </div>
+                <div class="artikull">
+                    <a href="artikulli2.html">
+                        <h3>Mantije</h3>
+                    </a>
+                    <p>Çmimi: <span class="cmimi">600</span> <strong>den</strong></p>
+                    <input type="number" min="1" value="1" class="sasi" />
+                    <button class="shto-ne-karroce" data-emri="Mantije" data-cmimi="600">Porosit</button>
+                </div>
+                <div class="artikull">
+                    <a href="artikulli3.html">
+                        <h3>Peta Misri</h3>
+                    </a>
+                    <p>Çmimi: <span class="cmimi">600</span> <strong>den</strong></p>
+                    <input type="number" min="1" value="1" class="sasi" />
+                    <button class="shto-ne-karroce" data-emri="Peta Misri" data-cmimi="600">Porosit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact-section" style="display: none;">
+            <section id="contact">
+                <h2>Kontakt</h2>
+                <p>Telefon: +389 70482227</p>
+                <ul>
+                    <li>
+                        <a href="https://wa.me/1234567890" target="_blank">
+                            <img src="whatsapp_icon.png" alt="WhatsApp" width="30" height="30"> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/yourusername" target="_blank">
+                            <img src="instagram_icon.png" alt="Instagram" width="30" height="30"> 
+                        </a>
+                    </li>
+                    <li>
+                        <a href="lokacioni.html">Shiko Lokacionin Tonë në Google Maps</a>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Porosia Reçic e Madhe</p>
+    </footer>
+
+    <script>
+        // JavaScript for toggling sections
+        document.getElementById('show-home').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('home-section').style.display = 'block';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'none';
+        });
+
+        document.getElementById('show-products').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'block';
+            document.getElementById('contact-section').style.display = 'none';
+        });
+
+        document.getElementById('show-contact').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('products-section').style.display = 'none';
+            document.getElementById('contact-section').style.display = 'block';
+        });
+
+        // Cart functionality
+        let cartCount = 0;
+
+        document.querySelectorAll('.shto-ne-karroce').forEach(button => {
+            button.addEventListener('click', function() {
+                let quantity = parseInt(this.previousElementSibling.value);
+                cartCount += quantity;
+                document.getElementById('cart-count').textContent = cartCount;
+            });
+        });
+
+        // Navigate to cart page
+        document.getElementById('shporta').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = 'pagesa.html';
+        });
+    </script>
+</body>
+</html>

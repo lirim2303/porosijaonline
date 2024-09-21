@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Produktet - Kifle & Produkte Ushqimore</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="produktet.html">Produkte</a></li>
+                <li><a href="kontaktet.html">Kontakt</a></li>
+                <li class="cart-icon">
+                    <a href="shporta.html">
+                        <img src="shporta.png" alt="Shporta" class="shporta-logo">
+                        <span id="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="products-section">
+        <h1>Produktet Tona</h1>
+        <div class="artikuj">
+            <div class="artikull">
+                <a href="artikulli1.html">
+                    <h3>Kifle</h3>
+                </a>
+                <p>Çmimi: <span class="cmimi">500</span> <strong>den</strong></p>
+                <input type="number" min="1" value="1" class="sasi" />
+                <button class="shto-ne-karroce" data-emri="Kifle" data-cmimi="500">Porosit</button>
+            </div>
+            <div class="artikull">
+                <a href="artikulli2.html">
+                    <h3>Mantije</h3>
+                </a>
+                <p>Çmimi: <span class="cmimi">600</span> <strong>den</strong></p>
+                <input type="number" min="1" value="1" class="sasi" />
+                <button class="shto-ne-karroce" data-emri="Mantije" data-cmimi="600">Porosit</button>
+            </div>
+            <div class="artikull">
+                <a href="artikulli3.html">
+                    <h3>Peta Misri</h3>
+                </a>
+                <p>Çmimi: <span class="cmimi">600</span> <strong>den</strong></p>
+                <input type="number" min="1" value="1" class="sasi" />
+                <button class="shto-ne-karroce" data-emri="Peta Misri" data-cmimi="600">Porosit</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Porosia Reçic e Madhe</p>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cartCount = 0;
+
+        document.querySelectorAll('.shto-ne-karroce').forEach(button => {
+            button.addEventListener('click', function() {
+                let quantity = parseInt(this.previousElementSibling.value);
+                cartCount += quantity;
+                document.getElementById('cart-count').textContent = cartCount;
+            });
+        });
+    </script>
+</body>
+</html>

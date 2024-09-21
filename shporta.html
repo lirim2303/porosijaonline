@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <!-- Shtoni lidhjen e CSS -->
+    <title>Shporta</title>
+</head>
+<body>
+    <header>
+        <h1>Shporta</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="produktet.html">Produktet</a></li>
+                <li><a href="kontakte.html">Kontaktet</a></li>
+                <li><a href="shporta.html">Shporta (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Produktet në Shportë</h2>
+        <div class="artikuj" id="cart-items">
+            <!-- Artikujt do të shfaqen këtu -->
+        </div>
+
+        <div class="total-price">
+            <h3>Çmimi Total: <span id="total">0</span> €</h3>
+        </div>
+
+        <button onclick="proceedToCheckout()">Kaloni në Pagesë</button>
+    </main>
+
+    <footer>
+        <p>© 2024 Kifle. Të gjitha të drejtat e rezervuara.</p>
+    </footer>
+
+    <script>
+        // Ky kod është për të shfaqur artikujt dhe çmimin total në shportë
+        const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalPriceElement = document.getElementById('total');
+
+        function renderCartItems() {
+            cartItemsContainer.innerHTML = ''; // Pastro shportën
+
+            let totalPrice = 0;
+
+            cartItems.forEach((item, index) => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'artikull'; // Mund të ndryshosh klasën sipas nevojës
+
+                // Strukturimi i artikujve
+                itemDiv.innerHTML = `
+                    <div class="artikuj-container">
+                        <img src="${item.image}" alt="${item.name}" class="artikuj-imazh">
+                        <h4>${item.name}</h4>
+                        <p>Çmimi: ${item.price} €</p>
+                        <div class="artikuj-menyra">
+                            <button onclick="removeItem(${index})">Fshi</button>
+                        </div>
+                    </div>
+                `;
+                
+                cartItemsContainer.appendChild(itemDiv);
+                totalPrice += item.price;
+            });
+
+            totalPriceElement.innerText = totalPrice.toFixed(2); // Trego çmimin total
+            document.getElementById('cart-count').innerText = cartItems.length; // Numri i artikujve në shportë
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1); // Hiq artikullin nga shporta
+            localStorage.setItem('cart', JSON.stringify(cartItems)); // Ruaj në localStorage
+            renderCartItems(); // Rendero përsëri artikujt
+        }
+
+        function proceedToCheckout() {
+            // Ndihmon në kalimin në faqen e pagesës
+            window.location.href = 'pagesa.html';
+        }
+
+        // Rendero artikujt kur faqja ngarkohet
+        renderCartItems();
+    </script>
+</body>
+</html>
